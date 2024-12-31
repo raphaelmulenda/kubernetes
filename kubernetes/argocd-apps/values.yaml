@@ -13,7 +13,6 @@ argocd-apps:
       orphanedResources:
         warn: false
 
-
   applications:
     argoproj:
       namespace: argocd
@@ -28,3 +27,6 @@ argocd-apps:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
