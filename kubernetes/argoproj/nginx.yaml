@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: nginx-app
+    server: https://kubernetes.default.svc
+  project: argo-cicd
+  source:
+    path: kubernetes/apps/nginx/overlays/development
+    repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
+    targetRevision: HEAD
