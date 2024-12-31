@@ -14,3 +14,7 @@ spec:
     path: kubernetes/argocd-apps
     repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

@@ -7,10 +7,14 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: nginx-app-cicd
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: argo-cicd
   source:
     path: kubernetes/apps/nginx/overlays/development
     repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
