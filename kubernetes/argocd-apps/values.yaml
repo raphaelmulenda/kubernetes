@@ -1,6 +1,6 @@
 argocd-apps:
   projects:
-    klabater:
+    argo-cicd:
       namespace: argocd
       sourceRepos:
         - '*'
