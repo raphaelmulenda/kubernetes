@@ -1,3 +1,4 @@
 namespace: voting-app-dev
 resources:
+  - namespace.yaml
   - ../../base
