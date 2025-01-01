@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: voting-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: vonting-app
+  source:
+    repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
+    targetRevision: HEAD
+    path: kubernetes/apps/voting-app/overlays/development
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: voting-app-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
