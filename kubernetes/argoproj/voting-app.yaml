@@ -6,7 +6,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: vonting-app
+  project: argo-cicd
   source:
     repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
     targetRevision: HEAD
