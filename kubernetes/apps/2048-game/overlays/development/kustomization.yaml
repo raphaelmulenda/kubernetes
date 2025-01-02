@@ -1,0 +1,6 @@
+resources:
+  - ../../base
+  - namespace.yaml
+  - ingress.yaml
+
+namespace: 2048-game-dev
