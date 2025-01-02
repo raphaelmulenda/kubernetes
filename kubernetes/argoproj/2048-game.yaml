@@ -13,7 +13,7 @@ spec:
     path: kubernetes/apps/2048-game/overlays/development
   destination:
     server: https://kubernetes.default.svc
-    namespace: 2048-game-dev
+    namespace: game-2048-dev
   syncPolicy:
     automated:
       prune: true

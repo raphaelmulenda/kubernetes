@@ -3,4 +3,4 @@ resources:
   - namespace.yaml
   - ingress.yaml
 
-namespace: 2048-game-dev
+namespace: game-2048-dev
