@@ -30,36 +30,3 @@ argocd-apps:
         automated:
           prune: true
           selfHeal: true
-
-elk-stack-apps:
-  projects:
-    elk-stack:
-      namespace: argocd
-      sourceRepos:
-        - '*'
-      destinations:
-        - namespace: '*'
-          server: https://kubernetes.default.svc
-      clusterResourceWhitelist:
-        - group: '*'
-          kind: '*'
-      orphanedResources:
-        warn: false
-
-  applications:
-    elk-stack-argoproj:
-      namespace: argocd
-      project: elk-stack
-      source:
-        repoURL: git@github.com:raphaelmulenda/elk-stack-apps.git
-        targetRevision: HEAD
-        path: kubernetes/argoproj/
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
-      syncPolicy:
-        syncOptions:
-          - CreateNamespace=true
-        automated:
-          prune: true
-          selfHeal: true
