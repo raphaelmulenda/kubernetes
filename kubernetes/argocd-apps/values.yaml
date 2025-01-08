@@ -13,20 +13,43 @@ argocd-apps:
       orphanedResources:
         warn: false
 
-  applications:
-    argoproj:
+  rootApplication:
+    enabled: true
+    name: argocd-appset-apps
+    namespace: argocd
+    project: argo-cicd
+    source:
+      repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
+      targetRevision: HEAD
+      path: kubernetes/appsets
+    destination:
+      server: https://kubernetes.default.svc
       namespace: argocd
-      project: argo-cicd
-      source:
-        repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
-        targetRevision: HEAD
-        path: kubernetes/argoproj/
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: argocd
-      syncPolicy:
-        syncOptions:
-          - CreateNamespace=true
-        automated:
-          prune: true
-          selfHeal: true
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+      automated:
+        prune: true
+        selfHeal: true
+
+
+
+# argocd-apps:
+#   rootApplication:
+#     enabled: true
+#     name: argocd-appset-apps
+#     namespace: argocd
+#     project: argo-cicd
+#     source:
+#       repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
+#       targetRevision: HEAD
+#       path: kubernetes/appsets
+#     destination:
+#       server: https://kubernetes.default.svc
+#       namespace: argocd
+#     syncPolicy:
+#       syncOptions:
+#         - CreateNamespace=true
+#       automated:
+#         prune: true
+#         selfHeal: true
