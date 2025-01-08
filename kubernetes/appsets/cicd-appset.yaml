@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: main
+spec:
+  generators:
+    # Generator for apps that should deploy to all cluster.
+    - matrix:
+        generators:
+          - clusters: {}
+          - list:
+              elements:
+                - appName: 2048-game
+                  namespace: game-2048-dev
+                - appName: nginx-app
+                  namespace: nginx-app
+                - appName: voting-app
+                  namespace: voting-app-dev
+  template:
+    metadata:
+      name: "{{name}}-{{appName}}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: ".;.."
+    spec:
+      project: argo-cicd
+      source:
+        repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
+        targetRevision: HEAD
+        path: "kubernetes/apps/{{appName}}/{{name}}"
+        # helm:
+        #   releaseName: "{{appName}}"
+        #   valueFiles:
+        #     - ../common.values.yaml
+        #     - values.yaml
+      destination:
+        name: "{{name}}"
+        namespace: "{{namespace}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
