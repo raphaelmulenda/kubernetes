@@ -18,7 +18,7 @@ spec:
                   namespace: voting-app-dev
   template:
     metadata:
-      name: "{{name}}-{{appName}}"
+      name: "{{appName}}"
       annotations:
         argocd.argoproj.io/manifest-generate-paths: ".;.."
     spec:
@@ -26,7 +26,7 @@ spec:
       source:
         repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
         targetRevision: HEAD
-        path: "kubernetes/apps/{{appName}}/{{name}}"
+        path: "kubernetes/apps/{{appName}}"
         # helm:
         #   releaseName: "{{appName}}"
         #   valueFiles:
