@@ -21,7 +21,7 @@ argocd-apps:
     source:
       repoURL: git@github.com:raphaelmulenda/kubernetes-cicd-project.git
       targetRevision: HEAD
-      path: kubernetes/appsets
+      path: kubernetes/argocd-root-app
     destination:
       server: https://kubernetes.default.svc
       namespace: argocd
