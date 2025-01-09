@@ -33,7 +33,7 @@ argocd-apps:
   #       selfHeal: true
 
   applications:
-    argocd-appset-apps:
+    argocd-project-app:
       namespace: argocd
       project: argo-cicd
       source:
